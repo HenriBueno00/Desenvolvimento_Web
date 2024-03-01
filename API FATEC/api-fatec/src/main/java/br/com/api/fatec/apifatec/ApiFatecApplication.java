@@ -22,7 +22,7 @@ public class ApiFatecApplication {
 	}
 	@RequestMapping("/teste")
 	Integer home3() {
-		return 2;
+		return 3;
 
 	}
 	@RequestMapping("/soma")
