@@ -8,11 +8,11 @@
 		<version>3.2.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.api.fatec</groupId>
+	<groupId>com.programacao.web</groupId>
 	<artifactId>api-fatec</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-fatec</name>
-	<description>Api desenvolvida em JAVA</description>
+	<description>Api Fatec</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
