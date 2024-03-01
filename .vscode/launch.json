@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiFatecApplication<api-fatec>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.api.fatec.apifatec.ApiFatecApplication",
+            "projectName": "api-fatec",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
