@@ -15,7 +15,7 @@ public class ApiFatecApplication {
     @RequestMapping("/classificarIdade")
     String classificarIdade(@RequestParam(value = "idade", required = true) Integer idade) {
         String categoria;
-        if (idade < 0) {
+        if (idade < 0)  {
             categoria = "Idade inválida";
         } else if (idade < 12) {
             categoria = "Criança";
