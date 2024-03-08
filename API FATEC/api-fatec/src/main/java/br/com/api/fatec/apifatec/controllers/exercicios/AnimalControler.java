@@ -38,3 +38,4 @@ public class AnimalControler {
         SpringApplication.run(AnimalControler.class, args);
     }
 }
+//localhost:8090/animal/sounds?types=cachorro,gato,passaro
