@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AnimalControler {
-	@RequestMapping("/animal/sounds")
+	@RequestMapping("/animal/som")
     public List<String> getAnimalSounds(@RequestParam("types") String[] types) {
-        List<String> sounds = new ArrayList<>();
+        List<String> som = new ArrayList<>();
         for (String type : types) {
-            sounds.add(getSoundByAnimalType(type));
+            som.add(getSoundByAnimalType(type));
         }
-        return sounds;
+        return som;
     }
 	private String getSoundByAnimalType(String type) {
         switch (type.toLowerCase()) {
