@@ -1,37 +1,30 @@
 package br.com.api.fatec.apifatec;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Bean;
 
-import java.util.Scanner;
+import br.com.api.fatec.apifatec.domain.cliente.ClienteRepository;
+import br.com.api.fatec.apifatec.entities.Cliente;
 
-@RestController
 @SpringBootApplication
 public class ApiFatecApplication {
-
-    @RequestMapping("/classificarIdade")
-    String classificarIdade(@RequestParam(value = "idade", required = true) Integer idade) {
-        String categoria;
-        if (idade < 0)  {
-            categoria = "Idade inválida";
-        } else if (idade < 12) {
-            categoria = "Criança";
-        } else if (idade <= 18) {
-            categoria = "Adolescente";
-        } else if (idade <= 60) {
-            categoria = "Adulto";
-        } else {
-            categoria = "Idoso";
-        }
-
-     
-        return "Sua categoria é: " + categoria;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(ApiFatecApplication.class, args);
-    }
+	@Bean
+	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository) {
+		return args -> {
+			Cliente cliente = new Cliente();
+			cliente.setNome("Danilo");
+			cliente.setEmail("h2danilofatec@hotmail.com");
+			cliente.setEndereco("Rua xxx, 126");
+			cliente.setRazaoSocial("Danilo");
+			
+			clienteRepository.save(cliente);
+		};
+	}
+	
+	public static void main(String[] args) {
+		SpringApplication.run(ApiFatecApplication.class, args);
+	}
 }
