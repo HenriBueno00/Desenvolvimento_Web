@@ -30,7 +30,7 @@ public class ProdutoService {
     public Produto atualizarProduto(Long id, Produto produto) {
         Produto produtoExistente = encontrarProdutoPorId(id);
         if (produtoExistente != null) {
-            produto.setId(id); // Garantindo que o ID seja o mesmo do produto existente
+            produto.setId(id); 
             return produtoRepository.save(produto);
         } else {
             return null;
