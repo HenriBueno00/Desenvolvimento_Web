@@ -1,5 +1,6 @@
-package br.com.api.fatec.apifatec.domain.produto;
+package br.com.api.fatec.apifatec.domain.produto.dao;
 
+import br.com.api.fatec.apifatec.domain.produto.ProdutoDTO;
 import br.com.api.fatec.apifatec.entities.Produto;
 
 public class ProdutoMapper {

@@ -5,8 +5,9 @@ public class ProdutoDTO {
     private String nome;
     private String descricao;
     private double preco;
-    
-    // Getters e setters
+    private int quantidadeEstoque;
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -37,5 +38,13 @@ public class ProdutoDTO {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 }
