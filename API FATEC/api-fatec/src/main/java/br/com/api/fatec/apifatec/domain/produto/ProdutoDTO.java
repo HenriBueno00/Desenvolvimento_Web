@@ -6,6 +6,7 @@ public class ProdutoDTO {
     private String descricao;
     private double preco;
     private int quantidadeEstoque;
+    private boolean ativo;
 
     // Getters e Setters
     public Long getId() {
@@ -46,5 +47,13 @@ public class ProdutoDTO {
 
     public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

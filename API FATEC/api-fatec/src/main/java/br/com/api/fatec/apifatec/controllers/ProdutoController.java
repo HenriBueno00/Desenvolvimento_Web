@@ -1,5 +1,7 @@
 package br.com.api.fatec.apifatec.controllers;
 
+import java.util.List;
+
 import br.com.api.fatec.apifatec.domain.produto.ProdutoService;
 import br.com.api.fatec.apifatec.domain.produto.ProdutoMapper;
 import br.com.api.fatec.apifatec.domain.produto.ProdutoDTO;
@@ -8,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -32,23 +32,17 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoDTO> salvarProduto(@RequestBody ProdutoDTO produtoDTO) {
+    public ResponseEntity<ProdutoDTO> criarProduto(@RequestBody ProdutoDTO produtoDTO) {
         Produto produto = ProdutoMapper.toEntity(produtoDTO);
-        ProdutoDTO produtoSalvo = ProdutoMapper.toDTO(produtoService.salvarProduto(produto));
-        return new ResponseEntity<>(produtoSalvo, HttpStatus.CREATED);
+        ProdutoDTO produtoCriado = ProdutoMapper.toDTO(produtoService.criarProduto(produto));
+        return new ResponseEntity<>(produtoCriado, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoDTO> atualizarProduto(@PathVariable Long id, @RequestBody ProdutoDTO produtoDTO) {
-        Produto produtoExistente = produtoService.encontrarProdutoPorId(id);
-        if (produtoExistente != null) {
-            produtoDTO.setId(id); // Garantindo que o ID seja o mesmo do produto existente
-            Produto produtoAtualizado = ProdutoMapper.toEntity(produtoDTO);
-            ProdutoDTO produtoAtualizadoDTO = ProdutoMapper.toDTO(produtoService.salvarProduto(produtoAtualizado));
-            return new ResponseEntity<>(produtoAtualizadoDTO, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Produto produto = ProdutoMapper.toEntity(produtoDTO);
+        ProdutoDTO produtoAtualizado = ProdutoMapper.toDTO(produtoService.atualizarProduto(id, produto));
+        return new ResponseEntity<>(produtoAtualizado, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

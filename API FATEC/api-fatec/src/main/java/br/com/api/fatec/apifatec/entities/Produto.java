@@ -27,6 +27,9 @@ public class Produto {
     @Column(name = "quantidade_estoque", nullable = false)
     private int quantidadeEstoque;
 
+    @Column(nullable = false)
+    private boolean ativo;
+
     // Getters e Setters
     public Long getId() {
         return id;
@@ -66,5 +69,13 @@ public class Produto {
 
     public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

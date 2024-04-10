@@ -12,6 +12,7 @@ public class ProdutoMapper {
         produto.setDescricao(dto.getDescricao());
         produto.setPreco(dto.getPreco());
         produto.setQuantidadeEstoque(dto.getQuantidadeEstoque());
+        produto.setAtivo(dto.isAtivo());
         return produto;
     }
 
@@ -22,6 +23,7 @@ public class ProdutoMapper {
         dto.setDescricao(produto.getDescricao());
         dto.setPreco(produto.getPreco());
         dto.setQuantidadeEstoque(produto.getQuantidadeEstoque());
+        dto.setAtivo(produto.isAtivo());
         return dto;
     }
 }

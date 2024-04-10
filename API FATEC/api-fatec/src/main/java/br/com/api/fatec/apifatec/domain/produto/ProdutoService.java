@@ -1,39 +1,83 @@
-package br.com.api.fatec.apifatec.domain.produto;
+import javax.persistence.*;
 
-import br.com.api.fatec.apifatec.entities.Produto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import br.com.api.fatec.apifatec.entities.Cliente;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@Service
-public class ProdutoService {
-    @Autowired
-    private ProdutoRepository produtoRepository;
+@Entity
+@Table(name = "pedidos")
+public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public List<Produto> listarProdutos() {
-        return produtoRepository.findAll();
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_pedido", nullable = false)
+    private Date dataPedido;
+
+    // Outros campos, como status do pedido, total, etc.
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> itens = new ArrayList<>();
+
+    // Getters e Setters
+    public Long getId() {
+        return id;
     }
 
-    public Produto encontrarProdutoPorId(Long id) {
-        return produtoRepository.findById(id).orElse(null);
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Produto salvarProduto(Produto produto) {
-        return produtoRepository.save(produto);
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void deletarProduto(Long id) {
-        produtoRepository.deleteById(id);
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Produto atualizarProduto(Long id, Produto produto) {
-        Produto produtoExistente = encontrarProdutoPorId(id);
-        if (produtoExistente != null) {
-            produto.setId(id); 
-            return produtoRepository.save(produto);
-        } else {
-            return null;
-        }
+    public Date getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(Date dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    // Outros getters e setters
+
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
+
+    public void adicionarItem(ItemPedido itemPedido) {
+        itens.add(itemPedido);
+        itemPedido.setPedido(this);
+    }
+
+    public void removerItem(ItemPedido itemPedido) {
+        itens.remove(itemPedido);
+        itemPedido.setPedido(null);
     }
 }
