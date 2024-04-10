@@ -23,6 +23,14 @@ public class ProdutoController {
         List<ProdutoDTO> produtos = ProdutoMapper.toDTOList(produtoService.listarProdutos());
         return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
+    
+    @PostMapping
+    public ResponseEntity<ProdutoDTO> criarProduto(@RequestBody ProdutoDTO produtoDTO) {
+        Produto produto = ProdutoMapper.toEntity(produtoDTO);
+        Produto produtoCriado = produtoService.criarProduto(produto);
+        ProdutoDTO produtoCriadoDTO = ProdutoMapper.toDTO(produtoCriado);
+        return new ResponseEntity<>(produtoCriadoDTO, HttpStatus.CREATED);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDTO> encontrarProdutoPorId(@PathVariable Long id) {
