@@ -1,9 +1,14 @@
+package br.com.api.fatec.apifatec.domain.pedido;
+
 import java.util.List;
+
+import br.com.api.fatec.apifatec.domain.cliente.ClienteDTO;
 
 public class PedidoDTO {
     private Long id;
     private ClienteDTO cliente;
     private String dataPedido;
+    private String status;
     private List<ItemPedidoDTO> itensPedido;
 
     // Getters e Setters
@@ -29,6 +34,14 @@ public class PedidoDTO {
 
     public void setDataPedido(String dataPedido) {
         this.dataPedido = dataPedido;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<ItemPedidoDTO> getItensPedido() {

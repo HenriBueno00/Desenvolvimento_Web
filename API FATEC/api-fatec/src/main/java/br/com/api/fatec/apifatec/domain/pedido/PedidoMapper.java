@@ -1,18 +1,20 @@
-import br.com.api.fatec.apifatec.domain.cliente.ClienteMapper;
-import br.com.api.fatec.apifatec.domain.produto.ProdutoMapper;
-import br.com.api.fatec.apifatec.entities.Pedido;
-import br.com.api.fatec.apifatec.domain.pedido.PedidoDTO;
+package br.com.api.fatec.apifatec.domain.pedido;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.api.fatec.apifatec.entities.Pedido;
+
 public class PedidoMapper {
+
     public static Pedido toEntity(PedidoDTO dto) {
         Pedido pedido = new Pedido();
         pedido.setId(dto.getId());
         pedido.setCliente(ClienteMapper.toEntity(dto.getCliente()));
         pedido.setDataPedido(dto.getDataPedido());
-        // Outros campos do pedido podem ser mapeados aqui
+        pedido.setStatus(dto.getStatus());
+        // Mapear lista de itens do pedido, se necessário
+        // pedido.setItens(...);
         return pedido;
     }
 
@@ -21,7 +23,9 @@ public class PedidoMapper {
         dto.setId(pedido.getId());
         dto.setCliente(ClienteMapper.toDTO(pedido.getCliente()));
         dto.setDataPedido(pedido.getDataPedido());
-        // Outros campos do DTO podem ser mapeados aqui
+        dto.setStatus(pedido.getStatus());
+        // Mapear lista de itens do pedido, se necessário
+        // dto.setItensPedido(...);
         return dto;
     }
 
