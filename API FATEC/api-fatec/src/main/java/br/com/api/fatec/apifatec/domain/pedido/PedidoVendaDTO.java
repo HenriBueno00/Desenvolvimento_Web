@@ -1,15 +1,18 @@
 package br.com.api.fatec.apifatec.domain.pedido;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.api.fatec.apifatec.domain.cliente.ClienteDTO;
 
-public class PedidoDTO {
+public class PedidoVendaDTO {
     private Long id;
     private ClienteDTO cliente;
-    private String dataPedido;
+    private LocalDate emissao;
+    private BigDecimal total;
     private String status;
-    private List<ItemPedidoDTO> itensPedido;
+    private List<PedidoVendaItemDTO> itens;
 
     // Getters e Setters
     public Long getId() {
@@ -28,12 +31,20 @@ public class PedidoDTO {
         this.cliente = cliente;
     }
 
-    public String getDataPedido() {
-        return dataPedido;
+    public LocalDate getEmissao() {
+        return emissao;
     }
 
-    public void setDataPedido(String dataPedido) {
-        this.dataPedido = dataPedido;
+    public void setEmissao(LocalDate emissao) {
+        this.emissao = emissao;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public String getStatus() {
@@ -44,11 +55,11 @@ public class PedidoDTO {
         this.status = status;
     }
 
-    public List<ItemPedidoDTO> getItensPedido() {
-        return itensPedido;
+    public List<PedidoVendaItemDTO> getItens() {
+        return itens;
     }
 
-    public void setItensPedido(List<ItemPedidoDTO> itensPedido) {
-        this.itensPedido = itensPedido;
+    public void setItens(List<PedidoVendaItemDTO> itens) {
+        this.itens = itens;
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.api.fatec.apifatec.domain.produto.ProdutoDTO;
 import br.com.api.fatec.apifatec.domain.produto.ProdutoService;
+import br.com.api.fatec.apifatec.entities.Produto;
+import br.com.api.fatec.apifatec.domain.produto.ProdutoMapper;
 
 import java.util.List;
 

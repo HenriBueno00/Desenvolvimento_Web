@@ -1,5 +1,6 @@
 package br.com.api.fatec.apifatec.entities;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -59,8 +60,8 @@ public class Produto {
         return preco;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setPreco(double bigDecimal) {
+        this.preco = bigDecimal;
     }
 
     public int getQuantidadeEstoque() {
